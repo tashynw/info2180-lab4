@@ -63,10 +63,33 @@ $superheroes = [
   ], 
 ];
 
+$queryName = $_GET['query'];
+$searchResult = [];
+
+function getResult($superheroes, $queryName){
+    global $searchResult;
+    foreach($superheroes as $superhero){
+        if($superhero['alias']==$queryName || $superhero['name']==$queryName) {
+            $searchResult = $superhero; 
+            return $superhero['id'];
+        } 
+    }
+    return -1;
+}
 ?>
 
-<ul>
-<?php foreach ($superheroes as $superhero): ?>
-  <li><?= $superhero['alias']; ?></li>
-<?php endforeach; ?>
-</ul>
+<?php if(!empty($queryName)) {?>
+    <?php if(getResult($superheroes, $queryName)==-1) {?>
+        <p id="no-result">Superhero not found</p>
+    <?php } else { ?>
+        <h3><?= $searchResult['alias'] ?></h3>
+        <h4>AKA <?= $searchResult['name'] ?></h4>
+        <p><?= $searchResult['biography'] ?></p>
+    <?php } ?>
+<?php } else { ?>
+    <ul>
+        <?php foreach ($superheroes as $superhero): ?>
+        <li><?= $superhero['alias']; ?></li>
+        <?php endforeach; ?>
+    </ul>
+<?php } ?>

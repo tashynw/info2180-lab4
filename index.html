@@ -6,10 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lab 4</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="styles.css" />
     <script type="text/javascript" src="app.js"></script>
 </head>
 <body>
     <h1>Avengers Character Search</h1>
-    <button id="search-button">Search</button>
+    <form onsubmit="event.preventDefault();">
+        <label>Search by Full Name or Alias</label>
+        <br/>
+        <input type="text" id="search-text" placeholder="Eg. Hulk or Captain America"/>
+        <button id="search-button" type="submit">Search</button>
+    </form>
+    <div id="result"></div>
 </body>
 </html>
